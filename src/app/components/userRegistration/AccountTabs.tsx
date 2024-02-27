@@ -16,6 +16,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { RegisterForm } from "./RegisterForm";
 import { supabase } from "@/app/services/supabase";
+import { LoginForm } from "./LoginForm";
 
 interface AccountTabs {}
 
@@ -49,43 +50,7 @@ const AccountTabs = ({}: AccountTabs) => {
       </TabsList>
       <TabsContent value="account">
         <div className="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow-sm  dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
-          <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-              <FormField
-                control={form.control}
-                name="email"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Email</FormLabel>
-                    <FormControl>
-                      <Input placeholder="admin@admin.co" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={form.control}
-                name="password"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Password</FormLabel>
-                    <FormControl>
-                      <Input
-                        placeholder="********"
-                        type="password"
-                        {...field}
-                      />
-                    </FormControl>
-
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <Button type="submit">Login</Button>
-            </form>
-          </Form>
+          <LoginForm />
         </div>
       </TabsContent>
       <TabsContent value="password">
