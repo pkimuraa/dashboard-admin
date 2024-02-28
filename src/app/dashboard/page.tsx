@@ -6,11 +6,11 @@ import { useRouter } from "next/navigation";
 import { supabase } from "../services/supabase";
 import { useUserStore } from "../services/features/User/useUserStore";
 import Nav from "../components/ui/Nav";
-import ResponsableTalbe from "../components/ui/ResponsableTable";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { queryClient } from "../services/api/queryClient";
 import "react-toastify/dist/ReactToastify.min.css";
 import { Flip, ToastContainer } from "react-toastify";
+import SubjectsTable from "../components/ui/SubjectsTable";
 export default function Dashboard() {
   const setUser = useUserStore((state) => state.setUser);
 
@@ -44,7 +44,8 @@ export default function Dashboard() {
       />
       <div className="flex">
         <Nav />
-        <ResponsableTalbe title="Teste" page="responsable" />
+        {/* <ResponsableTalbe title="Teste" page="responsable" /> */}
+        <SubjectsTable title="Teste" page="responsable" />
       </div>
     </QueryClientProvider>
   );

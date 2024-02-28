@@ -19,15 +19,26 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import useResponsableMutations from "@/app/services/features/User/Responsable/useResponsable";
+import useSubjectsMutations from "@/app/services/features/User/Subject/useSubject";
 
-export default function CreatePeople() {
+interface CreateButtonProps {
+  type: string;
+  name: string;
+  title: string;
+}
+
+export default function CreatePeople({ type, name, title }: CreateButtonProps) {
   const { createResponsable } = useResponsableMutations();
-
+  const { createSubject } = useSubjectsMutations();
   const formSchema = z.object({
     name: z.string().min(4),
   });
   const onSubmit = async (payload: any) => {
-    await createResponsable(payload);
+    if (type === "responsable") {
+      await createResponsable(payload);
+    } else {
+      await createSubject(payload);
+    }
   };
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -39,12 +50,12 @@ export default function CreatePeople() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button>Nova Pessoa</Button>
+        <Button>Novo {name}</Button>
       </DialogTrigger>
 
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Adicione um novo Responsável</DialogTitle>
+          <DialogTitle>{title}</DialogTitle>
         </DialogHeader>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">

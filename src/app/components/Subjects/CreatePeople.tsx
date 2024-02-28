@@ -22,7 +22,6 @@ import useResponsableMutations from "@/app/services/features/User/Responsable/us
 
 export default function CreatePeople() {
   const { createResponsable } = useResponsableMutations();
-
   const formSchema = z.object({
     name: z.string().min(4),
   });

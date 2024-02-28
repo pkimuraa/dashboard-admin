@@ -11,6 +11,10 @@ async function createResponsable(params: any) {
     .select();
 }
 
+async function deleteResponsable(params: any) {
+  await supabase.from("responsable").delete().eq("id", params);
+}
+
 const useResponsableMutations = () => {
   const { mutateAsync: createResponsableMutation } = useMutation({
     mutationFn: createResponsable,
@@ -21,8 +25,21 @@ const useResponsableMutations = () => {
     },
   });
 
+  const { mutateAsync: deleteResponsableMutation } = useMutation({
+    mutationFn: deleteResponsable,
+    mutationKey: ["deleteResponsable"],
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["supa", "responsable"] });
+      toast.success("Pessoa excluída com sucesso");
+    },
+    onError: () => {
+      toast.error("Algo Aconteceu");
+    },
+  });
+
   return {
     createResponsable: createResponsableMutation,
+    deleteResponsable: deleteResponsableMutation,
   };
 };
 

@@ -15,48 +15,54 @@ import { format } from "date-fns";
 import { Trash } from "lucide-react";
 import useResponsableMutations from "@/app/services/features/User/Responsable/useResponsable";
 import { Button } from "@/components/ui/button";
+import Create from "../People/Create";
+import useSubjectsMutations from "@/app/services/features/User/Subject/useSubject";
 
-interface ResponsableTalbeProps {
+interface SubjectsTableProps {
   title: string;
   page: string;
 }
 
-async function getResponsables() {
-  let { data: responsable, error } = await supabase
-    .from("responsable")
+async function getSubjects() {
+  let { data: subjects, error } = await supabase
+    .from("subjects")
     .select("*")
     .range(0, 9);
 
-  return responsable;
+  return subjects;
 }
 
-export default function ResponsableTalbe({ title }: ResponsableTalbeProps) {
-  const { deleteResponsable } = useResponsableMutations();
+export default function SubjectsTable({ title }: SubjectsTableProps) {
+  const { deleteSubject } = useSubjectsMutations();
   const [rowName, setRowName] = useState<any>();
 
-  const { data: responsable } = useQuery<any>({
-    queryKey: ["supa", "responsable"],
-    queryFn: getResponsables,
+  const { data: subjects } = useQuery<any>({
+    queryKey: ["supa", "subjects"],
+    queryFn: getSubjects,
   });
 
   const deleteUser = async (payload: any) => {
-    await deleteResponsable(payload);
+    await deleteSubject(payload);
   };
 
   useEffect(() => {
-    if (responsable) {
+    if (subjects) {
       let tableHeads: any = [];
-      tableHeads = Array.from(Object.keys(responsable[0]));
+      tableHeads = Array.from(Object.keys(subjects[0]));
 
       setRowName(tableHeads);
       console.log(rowName);
     }
-  }, [responsable]);
+  }, [subjects]);
   return (
     <div className="px-4 w-full flex-wrap h-fit flex py-4  rounded border ">
       <div className="w-full flex mb-4 items-center">
         <h1 className="w-full"> {title} </h1>
-        <CreatePeople />
+        <Create
+          name="Assunto"
+          title="Adicione um novo assunto"
+          type="subject"
+        />
       </div>
       <Table className="w-full h-auto px-4 py-4 shadow-lg border">
         <TableCaption>A list of your recent invoices.</TableCaption>
@@ -69,7 +75,7 @@ export default function ResponsableTalbe({ title }: ResponsableTalbeProps) {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {responsable?.map((people: any) => {
+          {subjects?.map((people: any) => {
             return (
               <TableRow key={people.id}>
                 <TableCell className="font-medium">{people.id}</TableCell>
