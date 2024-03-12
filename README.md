@@ -1,3 +1,21 @@
+# Overview
+
+This project is a dashboard application built using React, Next.js, and Supabase. It provides a user-friendly interface for visualizing and managing data stored in a Supabase backend. The dashboard includes features such as data visualization, user authentication, and CRUD (Create, Read, Update, Delete) operations.
+
+## Features
+ - Authentication: Users can sign up, log in, and authenticate securely using Supabase authentication.
+ - Data Visualization: Visualize data using charts, graphs, and tables to provide insights and analytics.
+ - CRUD Operations: Perform CRUD operations on data stored in Supabase tables, such as adding, editing, and deleting records.
+ - Responsive Design: The dashboard is responsive and optimized for various screen sizes, ensuring a consistent user experience across devices.
+ - Server-side Rendering: Utilizes Next.js for server-side rendering, improving performance and SEO.
+
+## Technologies Used
+ - React: A JavaScript library for building user interfaces.
+ - Next.js: A React framework for server-side rendering, routing, and more.
+ - Supabase: An open-source Firebase alternative with real-time and RESTful APIs for building modern applications.
+
+
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
