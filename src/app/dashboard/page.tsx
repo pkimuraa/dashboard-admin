@@ -11,6 +11,7 @@ import { queryClient } from "../services/api/queryClient";
 import "react-toastify/dist/ReactToastify.min.css";
 import { Flip, ToastContainer } from "react-toastify";
 import SubjectsTable from "../components/ui/SubjectsTable";
+import ManagerTable from "../components/ui/ManagerTable";
 export default function Dashboard() {
   const setUser = useUserStore((state) => state.setUser);
 
@@ -45,7 +46,8 @@ export default function Dashboard() {
       <div className="flex">
         <Nav />
         {/* <ResponsableTalbe title="Teste" page="responsable" /> */}
-        <SubjectsTable title="Teste" page="responsable" />
+        {/*  <SubjectsTable title="Teste" page="responsable" />  */}
+         <ManagerTable title="Gestão de Tarefas" page="managing" />
       </div>
     </QueryClientProvider>
   );

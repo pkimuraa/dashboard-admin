@@ -49,7 +49,6 @@ export default function ResponsableTalbe({ title }: ResponsableTalbeProps) {
       tableHeads = Array.from(Object.keys(responsable[0]));
 
       setRowName(tableHeads);
-      console.log(rowName);
     }
   }, [responsable]);
   return (
